@@ -6,9 +6,10 @@ const moment = require('moment');
 const express = require('express');
 const app = express();
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 8080));
 
 app.use(express.static(path.resolve(__dirname, 'client')));
+app.get("/", (req, res) => res.send("Hi, Welcome to timestamp-api1."))
 app.get('/:timestamp', (req,res) => {
   let time = moment(req.params.timestamp, 'MMMM DD, YYYY', true);
   if (!time.isValid())
